@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/video.css">
+  <link rel="stylesheet" href="./css/images.css">
+
+  <script src="./js/jquery-3.3.1.min.js">
+  </script>
+  <script src="./js/jquery.cookie.js"></script>
+</head>
+
+<body>
+
+  <!--ajax返回值 有text   JSON-->
+  <!--ajax返回值  返回JSON  数据-->
+
+  <!-- <script>
+			$(document).ready(function() {
+				//所创建的cookie有效期默认到用户关闭浏览器为止
+				//$.cookie('the_cookie', '123'); 	
+				//创建一个cookie并设置 cookie的有效路径： 
+				$.cookie('the_cookie_expires_07', '张三feng', { expires: 7 }); 
+				//读取cookie
+				var value = $.cookie('the_cookie'); 
+				var value_07 = $.cookie('the_cookie_expires_07'); 
+				document.writeln('读取cookie的值：' + value + '<br />' + '读取cookie存在7天的值：' + value_07);
+				//删除默认的cookie
+				//$.cookie('the_cookie', null); 
+			});
+		</script> -->
+
+
+  <!--返回一个值的-->
+  <!--$("#name").text(s.name);   //返回了一个值的-->
+
+
+  </head>
+
+  <body>
+    <!--用户输入代号-->
+
+    <div id="logo">
+    
+
+
+      
+   
+
+
+      <a id="pre" href=""><img  id="logo_return" src="./images/i/返回.png" alt=""></a>
+    </div>
+    <div id="content">
+
+      <div id="left">
+        <button class="btn-left">
+          <img src="./images/video/chapter.png" alt="">
+          <span>章节</span>
+        </button>
+        <button class="btn-left">
+          <img src="./images/video/discuss.png" alt="">
+          <span>讨论</span>
+        </button>
+        <button class="btn-left">
+          <img src="./images/video/note.png" alt="">
+          <span>笔记</span>
+        </button>
+
+      </div>
+
+      <div id="medium">
+        <video class="video-model" id="1" src="" alt="" controls="controls">
+      </div>
+
+      <div id="right">
+
+        <img src="./images/menu/p1.jpg" alt="">
+
+        <span>中关村隐士3409088</span>
+
+        <p>BAT金融类产品后端架构师，具备多年架构经验和培训经验，后端技术极客，擅长JAVA、GO、Erlang大型项目开发</p>
+      </div>
+
+
+
+
+    </div>
+
+
+    <script>
+      $(function () {
+        var locurl = window.location.href; //获得页面的URL
+        var startplace = locurl.indexOf("?"); //得到网址与参数分隔符的位置，一般都用“？”分隔
+        if (startplace != -1) { //判断网址中有没有参数
+          var params = locurl.substr(startplace + 1); //获得参数字符串，从分隔符位置+1处开始获取   结果为id=1;
+          var chapter = params.substr(3); //作用是只拿到1，从第三个位置开始截取
+
+        }
+        // alert(chapter);
+
+        var startplace = chapter.indexOf("*");
+        var params = chapter.substr(0, startplace); //获得参数字符串，从分隔符位置+1处开始获取   结果为id=1;
+
+
+        var video = $.cookie(chapter);
+        var value1 = $.cookie("user");
+        var value2 = params;
+        var value3 = $.cookie(chapter + "ch");
+        //得到网址与参数分隔符的位置，一般都用“？”分隔
+
+        // alert("user"+value1);
+        // alert("number"+value2);
+        // alert("chapter"+value3);
+        // alert(params);
+
+
+
+
+        $("#1").attr("src", video);
+        $("#pre").attr("href", "./menu.html?number=" + params);
+
+        // var localTime = new Date();
+        //  var code5 = localTime.toLocaleString();
+        let date = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/,
+          '');
+
+
+        $.ajax({
+
+          url: "sc.php",
+          data: {
+            user: value1,
+            number: value2,
+            chapter: value3,
+            time1: date,
+            learn:1
+          }, //前面命名，后面是值
+          type: "POST",
+          dataType: "JSON",
+          success: function (s) {
+            //  alert("hello");
+
+          }
+
+
+
+        });
+
+var video = document.getElementById("1");
+    video.addEventListener('ended', function () {  
+        // this.style.display = 'none';
+        alert("the video is ended!");
+        $.ajax({
+
+url: "sc.php",
+data: {
+  user: value1,
+  number: value2,
+  chapter: value3,
+  time1: date,
+  learn:2
+}, //前面命名，后面是值
+type: "POST",
+dataType: "JSON",
+success: function (s) {
+  //  alert("hello");
+
+}
+
+
+
+});
+
+
+
+    }, false);
+
+
+
+      })
+    </script>
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+      // <!--给按钮加一个点击事件-->
+    
+      // $.cookie("login_value",0,{'path':'/'});
+    var login_yes=  $.cookie("login_value");
+    var user_show=$.cookie("user");
+    var user_name=$.cookie("name");
+    var user_images=$.cookie("user_images");
+  //   alert(user_images);
+    if(login_yes==1)
+    {
+        
+        $("#login_big").css("display","none");
+        $("#zhuce_big").css("display","none");
+        $("#user_show").css("display","block");
+        $("#user_images").attr("src",user_images);
+        $("#user_images2").attr("src",user_images);
+        $("#user_name").text(user_name);
+    }
+    else{
+      $("#user_show").css("display","none");
+    }
+ 
+
+
+
+
+  });
+</script>
+
+  </body>
+
+</html>

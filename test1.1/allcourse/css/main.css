@@ -1,0 +1,377 @@
+*{
+    margin: 0 auto;
+    padding:0px;
+    border: 0px;
+}
+hr{
+   background: rgb(148, 148, 145);
+}
+a{
+    text-decoration: none;
+}
+#logo{
+    width: 100%;
+    height: 75px;
+    background: rgb(148, 145, 145);
+  
+}
+.logo-item{
+    width: 60%;
+    height: 75px;
+
+}
+#logo_1{
+    top: 0px;
+    left: 100px;
+    width: 8%;
+    height: 35px;
+    margin: 13px 50px;
+   position: absolute; 
+}
+.mainlevel{
+  
+    width: 15%;
+float: left;
+margin: 20px auto;
+font-size: 1.3em;
+font-weight: bold;
+
+}
+.search_left{
+    float: left;
+}
+#search_img{
+
+
+    position: absolute;
+   
+    top: 20px;
+    right: 670px;
+    cursor:pointer;
+
+}
+.logo-item img{
+    width: 30px;
+    height: 30px;
+}
+ 
+
+
+
+
+.logo-item a:hover{
+    color: rgb(128, 122, 141);
+}
+li{
+    list-style-type: none;
+    
+}
+.logo-item a{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.right1{
+    right: 110px;
+    position: absolute!important;
+    width: 9%;
+    margin: 10px auto;
+font-size: 1.3em;
+font-weight: bold;
+}
+.right2{
+    right: 50px;
+    position: absolute!important;
+    width: 9%;
+    margin: 10px auto;
+font-size: 1.3em;
+font-weight: bold;
+}
+
+
+
+
+
+
+
+
+#header{
+    width: 100%;
+    height: 500px;
+    
+}
+#header img{
+    width: 100%;
+    height: 80%;
+    margin: 10px 50px 10px 0px;
+    border-radius: 10px;
+}
+#menu{
+    margin: 0px 0px 50px 0px;
+    height: 50px;
+    width: 100%;
+}
+#nd{
+    font-weight:bold;
+    background: rgb(245, 199, 74);
+    padding: 5px;
+
+    border-radius: 5px;
+}
+.btn1{
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn1:hover{
+    color: red;
+}
+.course{
+    height: 250px;
+    border: 1px solid rgb(179, 179, 174);
+   
+}
+#nav{
+    width: 80%;
+
+}
+.row img ,.row_easy img,.row_medium img,.row_difficult img{
+    width: 80%;
+    height: 150px;
+    margin: 10px 0px 10px 30px ;
+    border-radius:10px; 
+ 
+  
+}
+h6{
+    
+    text-align: center;
+}
+.course-logo{
+    font-size: 0.9em;
+    color: rgb(133, 133, 131);
+}
+.person-count{
+    font-size: 0.9em;
+    float:right;
+    
+    color: red;
+}
+.course-right{
+    font-size: 0.9em;
+    color: rgb(133, 133, 131);
+    float: right;
+}
+
+.bottom{
+    width:80%;
+}
+#more{
+    margin: 50px auto;
+    width: 200px;
+    height: 50px;
+   
+}
+#btn{
+    
+    width: 200px;
+    height: 50px;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 1px solid red;
+    color: red;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+#btn:hover{
+    background: rgb(219, 68, 68);
+    border: 1px solid red;
+    color: #fff;
+   
+}
+#container{
+  display: none;
+}
+#banner{
+    width: 100%;
+    height: 500px;
+  
+}
+
+
+
+
+
+
+
+/* 登陆头像 */
+
+.right3{
+    right: 118px;
+    top: -22px;
+    position: absolute;
+    width: 9%;
+    margin: 10px auto;
+
+
+}
+
+
+
+
+
+
+
+
+
+.navbar-nav{
+    width: 80%;
+}
+
+/* .navbar-nav a{
+    font-size: 1.5em;
+} */
+.navbar-nav a:hover{
+    color: rgb(128, 122, 141)!important;
+}
+
+
+.dropdown-menu1{
+   position: absolute;
+    left: -100px;
+    top:75px;
+    margin: 0 10px;
+    padding: 20px;
+    width: 300px;
+    height: 220px;
+    border: 1px solid #fff;
+    background: #fff;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 0px 0px 2px rgb(221, 220, 220);
+}
+.dropdown-menu1 a{
+    color: rgb(128, 122, 141);
+    font-size: 1em!important;
+}
+
+
+.dropdown-menu1 a span{
+    position: relative;
+    text-align: center;
+    margin-top: 150px;
+    top: 30px;
+    color: black;
+}
+
+.dropdown-menu1 a img{
+    width: 20px;
+    height: 20px;
+    margin-right:10px; 
+}
+/* #my_news{
+    position: absolute;
+    top: 10px;
+    right: 500px;
+} */
+#my_news:hover .dropdown-menu1{
+    display: block;
+}
+.dropdown-item1{
+    width: 50%;
+    height: 20px;
+    margin: 10px auto;
+    padding: 0px;
+    float: left;
+    /* font-size: 0.5px!important; */
+ 
+}
+.dropdown-item1 {
+    font-size: 1em;
+    color: rgb(128, 122, 141);
+}
+.dropdown-menu1 div a img{
+    margin: 0px 30px 20px 0px;
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+   
+}
+
+
+
+
+
+#user_name{
+    margin-top: 10px;
+    position: absolute;
+    font-size: 1.5em;
+}
+
+
+
+
+
+#user_show{
+    position: relative;
+    top: 25px;
+    right: -35px;
+}
+#user_show img{
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+}
+
+
+
+/* 登陆头像 */
+
+
+.red_color{
+    background:rgb(171, 245, 74);
+}
+
+
+.no{
+    display: none;
+}
+.bn{
+width: 100px;
+height: 50px;
+margin: 10px;
+background: red;
+float: left;
+
+
+}
+#a{
+background: black;
+}
+#b{
+    background: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

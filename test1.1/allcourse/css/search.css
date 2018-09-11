@@ -1,0 +1,44 @@
+*{
+    margin: 0 auto;
+    padding:0px;
+    border: 0px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.course{
+    height: 250px;
+    border: 1px solid rgb(179, 179, 174);  
+}
+
+ img{
+    width: 80%;
+    height: 150px;
+    margin: 10px 0px 10px 30px ;
+    border-radius:10px;  
+}
+h6{
+    
+    text-align: center;
+}
+.course-logo{
+    font-size: 0.9em;
+    color: rgb(133, 133, 131);
+}
+.person-count{
+    font-size: 0.9em;
+    float:right;
+    
+    color: red;
+}
+.course-right{
+    font-size: 0.9em;
+    color: rgb(133, 133, 131);
+    float: right;
+}
+
+.bottom{
+    width:80%;
+}

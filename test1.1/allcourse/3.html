@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+<video width="1024" height="576" id="shVideo"src="../../resource/video/小学/C语言程序设计/1.1C语言简介.mp4"controls="controls">
+    
+</video>
+<script>   
+    var video = document.getElementById("shVideo");
+    video.addEventListener('ended', function () {  
+        this.style.display = 'none';
+        alert("the video is ended!");
+    }, false);
+</script>
+</body>
+</html>

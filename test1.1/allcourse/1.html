@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/menu.css">
+    <script src="./js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    
+
+    <div class="box">
+        <h3>第3章 函数与模块化设计</h3>
+        <br>
+        <ul>
+            <li>
+                <img src="./images/i/play.png" alt="">
+                <a href="#">3.1 函数的定义域调用</a>
+                <img src="./images/i/doing2.png" alt="">
+            </li>
+            <li>
+                <a href="#">3.2 参数的传递</a>
+                <img src="./images/i/doing2.png" alt="">
+            </li>
+            <li>
+                <a href="#">3.3 函数的嵌套调用与递归调用</a>
+                <img src="./images/i/doing2.png" alt="">
+            </li>
+            <li>
+                <a href="#">3.4 全局变量与局部变量</a>
+                <img src="./images/i/doing2.png" alt="">
+            </li>
+        </ul>
+    </div>
+  
+
+<script>
+$(function(){
+ var i=8;   
+ while(i>0){ 
+var a=$("<div class='box'><h3>第3章 函数与模块化设计</h3><br><ul></ul></div>");
+var j=5;
+    while(j>0){
+        var b=$("<li><a href='#'>3.4 全局变量与局部变量</a></li>");
+        // alert(j);
+        $(a).append(b);
+        j--;
+    }
+$('body').append(a);
+i--;
+}
+
+
+})
+
+</script>
+
+</body>
+</html>

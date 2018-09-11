@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="./css/menu.css">
+
+</head>
+
+<body>
+
+
+    <!-- jquery加背景图片 -->
+    <div id="logo">
+        <div id="logo1">
+
+
+            <h1 id="coursename"></h1>
+
+            <div class="logo2">
+                <img src="./images/menu/p1.jpg" alt="">
+
+                <div class="cfont1">
+                    <span>学习人数：</span>
+                    <span id="person_count"></span>
+                </div>
+                <div class="cfont1">
+                    <span>教师：</span>
+                    <span id="teacher"></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="nav">
+        <div id="nav1">
+            <ul>
+                <li class="mainlevel">
+                    <a href="#">课程章节</a>
+                </li>
+                <li class="mainlevel">
+                    <a href="#">问答评论</a>
+                </li>
+                <li class="mainlevel">
+                    <a href="#">学生笔记</a>
+                </li>
+                <li class="mainlevel">
+                    <a href="#">用户评价</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div id="header">
+        <div id="content">
+            <h4 id="learn">已学习0%</h4>
+            <span style="position: absolute;top:20px;right: 20px;font-size: 0.8em ;color:rgb(109, 107, 106)">学习耗时0分钟</span>
+            <div class="progress_bar">
+
+                <span class="clip"></span>
+
+            </div>
+            <br>
+            <p id="chapter"></p>
+            <a href="" id="btn1">
+                <button class="btn">继续学习</button>
+            </a>
+            <h4>课程须知</h4>
+            <p id="coursename_right"></p>
+            <h4>老师告诉你能学到什么</h4>
+            <p id="learn_right"></p>
+        </div>
+    </div>
+    <div id="container">
+
+
+    </div>
+
+
+
+    <script>
+        $(document).ready(function () {
+
+
+
+
+
+            var locurl = window.location.href; //获得页面的URL
+            var startplace = locurl.indexOf("?"); //得到网址与参数分隔符的位置，一般都用“？”分隔
+            if (startplace != -1) { //判断网址中有没有参数
+                var params = locurl.substr(startplace + 1); //获得参数字符串，从分隔符位置+1处开始获取   结果为id=1;
+                var number = params.substr(7); //作用是只拿到1，从第三个位置开始截取
+                // alert(number);
+
+
+
+                var value = $.cookie("class");
+                if (value == null) {
+                    value = $.cookie(number + '*' + 'class');
+                    // alert(value);
+                }
+
+                // alert("class" + value);
+            }
+            var user_value = $.cookie("user");
+
+
+
+
+
+
+            $.ajax({ //从数据库中读取数据，插到文中
+
+                url: "menu.php",
+                data: {
+                    number: number,
+                    class: value
+                }, //前面命名，后面是值
+                type: "POST",
+                dataType: "JSON",
+                success: function (s) {
+
+                    $("#coursename").text(s[0].coursename);
+                    $("#teacher").text(s[0].teacher);
+                    $("#person_count").text(s[0].person_count);
+
+                    var j = 0;
+                    var flag = 0; //默认开辟新的一章
+                    var length = s.length;
+
+                    //alert(s[j].images);
+                    $("#logo").css("background", "url(" + s[0].images + ")");
+                    $("#coursename_right").text(s[0].coursename);
+                    $("#learn_right").text(s[0].note);
+                    while (j < length) {
+
+
+                        if (flag == 0) {
+                            var str1 = "<div class='box'><h3>";
+                            var str2 = s[j].chapter_logo;
+                            var str3 = "</h3><br><ul></ul></div>";
+                            var a = $(str1 + str2 + str3);
+
+                        }
+
+                        var chap1 = s[j].chapter.substr(0, 1); //获取1.1中的第一个1
+                        if (j == length - 1) //最后一个不能和j+1比较，直接插入
+                            flag = 1;
+                        else {
+                            var chap2 = s[j + 1].chapter.substr(0, 1);
+
+
+                            if (chap1 == chap2)
+                                flag = 1;
+                            else {
+                                flag = 0;
+                            }
+                        }
+                        var chap3 = s[j].chapter.substr(0, 3);
+                        var str11 = "<li id='";
+                        var str12 = chap3 * 10;
+                        var str13 = "'><a href='./video.html?id=";
+                        var str14 = s[j].number + '*' + chap3;
+                        var str15 = "  '> ";
+                        var str16 = s[j].chapter;
+
+                        var str17 = "<img class='chapter_logo' src='./images/i/unlook.png'><b></b></a></li>";
+                        //      var str11 = "<li><a href='./video.html?id=";
+                        //      var str12 = s[j].number + '*' + chap3;
+
+                        //      var str13 = "  '> ";
+                        //      var str14 = s[j].chapter;
+
+                        //  var str15 = "</a><img id='";
+                        //      var str16 = chap3*10;
+                        //      var str17 = "' src='./images/i/doing2.png'><b>上次学到</b></li>";
+
+
+
+
+
+
+                        var b = $(str11 + str12 + str13 + str14 + str15 + str16 + str17);
+                        $.cookie(s[j].number + '*' + chap3 + "ch", s[j].chapter);
+                        $.cookie(s[j].number + '*' + chap3, s[j].video);
+                        $(a).append(b);
+
+
+                        $("body").bind("click", function () {
+                            $("#container").append(a);
+
+                        })
+                        $("body").trigger("click");
+
+                        j++;
+                   
+
+
+                    }
+        
+             
+                }
+
+
+
+            });
+
+
+
+            $.ajax({ //右边学习进度卡片的相关信息
+                url: "chapter.php",
+                data: {
+                    user: user_value,
+                    number: number,
+                    flag: 1
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (s) {
+                    // alert(s[0].learn);
+                    // alert(s[0].study_chapter);
+                    // alert(s[0].chapter);
+
+                    var continue_learn = s[0].chapter;
+                    continue_learn = continue_learn.substr(0, 3) * 10;
+                    $.cookie("continue_learn", continue_learn);
+                    var receive_chap = "上次学至" + s[0].chapter;
+                    $('#chapter').text(receive_chap);
+
+                    
+                    var percent = s[0].percent;
+                  //  percent = percent.toFixed(0);
+                    
+                    // percent=percent*100;
+                    var learn_percent = "已学习" + percent + '%';
+                    $('#learn').text(learn_percent);
+                    var progress_now = "rect(0px," + percent * 2.5 + "px,20px,0px)";
+                    $('.clip').css('clip', progress_now);
+
+
+                    //  右边继续学习超链接参数设置
+                    var chap3 = s[0].chapter.substr(0, 3);
+                    var continue_chapter = s[0].number + '*' + chap3;
+                    $('#btn1').attr("href", "./video.html?id=" + continue_chapter);
+
+
+                    //插入学习章节的图标
+                    // var chapter_length=s.length
+
+
+                }
+            });
+
+            $.ajax({ //右边学习进度卡片的相关信息
+                url: "chapter.php",
+                data: {
+                    user: user_value,
+                    number: number,
+                    flag: 2
+                },
+                type: "POST",
+                dataType: "JSON",
+                success: function (s) {
+                    // alert(s[0].learn);
+                    // alert(s[0].study_chapter);
+                    // alert(s[0].chapter);
+                    //插入学习章节的图标
+                    var chapter_length = s.length;
+                    var j = 0;
+                    var continue_learn1 = $.cookie("continue_learn");
+                    for (j = 0; j < chapter_length; j++) {
+                        var chap3 = s[j].chapter.substr(0, 3);
+                        chap33 = chap3 * 10;
+                        // $("#container").on("click","#"+ chap33+" img", function () {
+                      
+                            if(s[j].learn==1)
+                            $("#" + chap33 + " img").attr("src", "./images/i/doing2.png");
+                            if(s[j].learn==2)
+                        $("#" + chap33 + " img").attr("src", "./images/i/success1.png");
+
+                        //  alert("hello");
+                        // });
+                        //$("#"+chap33+" img").trigger("click");
+
+
+
+                       
+
+
+                    }
+
+
+                    $("#" + continue_learn1 + " b").text("最近学习");
+
+
+                    //类似hover的图标交互
+                      $("#" + continue_learn1).mouseover(function () {
+                          $("#" + continue_learn1 + " b").css("color", "red");
+                    //     $("#" + continue_learn1 + " img").attr("src",
+                    //          "./images/i/success2.png");
+                      })
+                      $("#" + continue_learn1).mouseout(function () {
+                         $("#" + continue_learn1 + " b").css("color", "black");
+                    //      $("#" + continue_learn1 + " img").attr("src",
+                    //          "./images/i/success1.png");
+                      })
+
+                    //     $("#"+chap33).mouseover(function(){
+                    //   $("#"+chap33+" b").css("color","red");
+                    //   $("#"+chap33+" img").attr("src","./images/i/success2.png");
+                    //   })
+                    //   $("#"+chap33).mouseout(function(){
+                    //   $("#"+chap33+" b").css("color","black");
+                    //   $("#"+chap33+" img").attr("src","./images/i/success1.png");
+                    //   })
+
+
+
+                }
+            })
+
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>

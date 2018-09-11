@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../allcourse/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/images/user/main.css">
+    <link rel="stylesheet" href="./css/my.css">
+    <script src="../allcourse/js/jquery-3.3.1.min.js"></script>
+    <script src="../allcourse/js/jquery.cookie.js"></script>
+</head>
+
+<body>
+    <div id="logo">
+
+        <img id="logo-left" src="../../../test1.1/allcourse/images/logo_scroll.png" alt="">
+
+        <div>
+            <ul class="logo-item">
+                <li class="mainlevel">
+                    <a href="../index/index.html">首页</a>
+                </li>
+                <li class="mainlevel">
+                    <a href="../pack/new/login.html">论坛</a>
+                </li>
+
+               
+                <li class="page-scroll right1 " id="login_big">
+                    <a href="../index/login.html">登录</a>
+                </li>
+                <li class="page-scroll right2" id="zhuce_big">
+                    <a href="../index/login.html">注册</a>
+                    
+                </li>
+
+                <li class="page-scroll  right3"id="my_news">
+                    <a href="#"id="user_show">
+                        <img src="" alt="" id="user_images">
+                    </a>
+                    <div class="dropdown-menu1">
+                        <div>
+                            <a  href="../../resource/images/user/8.html">  <img class="dropdown-user" src="" alt=""id="user_images2"><span id="user_name"></span></a>
+                        </div>
+                        <a class="dropdown-item1" href="#"><img src="../../../test1.1/allcourse/images/i/课程.png" >我的课程</a>
+                        <a class="dropdown-item1" href="#"><img src="../../../test1.1/allcourse/images/i/设置.png">个人设置</a>
+                        <a class="dropdown-item1" href="../index/login.html"><img src="../../../test1.1/allcourse/images/i/切换.png">切换账号</a>
+                        <a class="dropdown-item1" href="../index/login.html"><img src="../../../test1.1/allcourse/images/i/退出.png">安全退出</a>
+                    </div>
+                </li>
+
+
+
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div id="header">
+        <div>
+            <a  href="../../resource/images/user/8.html">  <img class="dropdown-user" src="" alt=""id="user_images_left"><span id="user_name_left"></span></a>
+        </div>
+
+
+    </div>
+
+
+    <div id="main">
+        <ul id="nav">
+
+
+
+        </ul>
+
+    </div>
+
+    <div id="footer">
+
+    </div>
+
+
+    <script>
+        $(function () {
+
+
+
+
+            var value1 = $.cookie("user");
+
+
+
+
+
+
+            var root = $("#nav");
+
+            $.ajax({
+
+                url: "my.php",
+                data: {
+                    user: value1,
+
+                }, //前面命名，后面是值
+                type: "POST",
+                dataType: "JSON",
+                success: function (s) {
+
+                    // $("#coursename").text(s[0].coursename);
+                    //     $("#teacher").text(s[0].teacher);
+                    //     $("#person_count").text(s[0].person_count);
+
+                    var j = 0;
+                    // var flag = 0;//默认开辟新的一章
+                    var length = s.length;
+
+
+                    // $("#logo").css("background", "url(" + s[j].images + ")");
+                    while (j < length) {
+                       
+                        var chap3 = s[j].chapter.substr(0, 3);
+                        var str1 = "<span class='time1'>";
+                        var str8 =s[j].date1;
+                        var str9 ="<div class='solid_r'></div><div class='solid1'></div></span><li class='course row'><img src='";
+                        var str2 = s[j].images;
+                        var str3 = "'alt='' class='col-lg-4'><div class='col-lg-6'><h5 class=' item5'>";
+                        var str4 = s[j].coursename;
+                        var str5 = "</h5><br><span class='my_color1'>已学习";
+                        var str10=s[j].percent;
+                        var str11= "%</span><br><span class='my_color2'>上次学到 ";
+                        var str12=s[j].chapter;
+                        var str13 ="</span></div><a href='../allcourse/video.html?id="
+                        var str6 = s[j].number + '*' + chap3;
+                        var str7 = "'class='btn_continue col-lg-2'>继续学习</a></li>"
+                        var t = $(str1 + str8+str9+ str2 + str3 + str4 + str5 +str10+str11+str12+str13+ str6 + str7);
+                        $.cookie(s[j].number+'*'+'number', s[j].number, {path: '/'});
+                        $.cookie(s[j].number + '*' + chap3 + "ch", s[j].chapter, {path: '/'});
+                        $.cookie(s[j].number + '*' + chap3, s[j].video, {path: '/'});
+                        $.cookie(s[j].number +'*'+'class',s[j].class,{path:'/'});
+// alert(s[j].class);
+                        $(root).append(t);
+
+
+
+                        j++;
+                    }
+
+
+
+
+
+                }
+
+
+
+            });
+
+
+
+
+
+        })
+    </script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // <!--给按钮加一个点击事件-->
+      
+        // $.cookie("login_value",0,{'path':'/'});
+      var login_yes=  $.cookie("login_value");
+      var user_show=$.cookie("user");
+      var user_name=$.cookie("name");
+      var user_images=$.cookie("user_images");
+    //   alert(user_images);
+      if(login_yes==1)
+      {
+          
+          $("#login_big").css("display","none");
+          $("#zhuce_big").css("display","none");
+          $("#user_show").css("display","block");
+          $("#user_images").attr("src",user_images);
+          $("#user_images2").attr("src",user_images);
+          $("#user_name").text(user_name);
+          
+           $("#user_images_left").attr("src",user_images);
+           $("#user_name_left").text(user_name);
+      }
+      else{
+        $("#user_show").css("display","none");
+      }
+   
+
+
+
+
+    });
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

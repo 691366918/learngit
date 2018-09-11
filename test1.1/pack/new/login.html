@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="assets/css/OcOrato---Login-form.css">
+    <link rel="stylesheet" href="assets/css/OcOrato---Login-form1.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<script type="text/javascript">
+    function foo(){
+        if(myform.username.value=="")
+        {
+            alert("请输入用户名");
+            myform.username.focus();
+            return false;
+        }
+        if (myform.password.value=="")
+        {
+            alert("请输入密码");
+            myform.password.focus();
+            return false;
+        }
+    }
+</script>
+<body>
+    <form action="login.php" method="post" id="form" onsubmit="return foo();" style="font-family:Quicksand, sans-serif;background-color:rgba(44,40,52,0.73);width:320px;padding:40px;">
+        <h1 id="head" style="color:rgb(193,166,83);">Login</h1>
+        <div><img class="img-fluid d-block float-none" src="assets/img/logo.png" id="image" style="width:auto;height:auto;"></div>
+        <div class="form-group"><input class="form-control" type="text"  name="username" placeholder="username"></div>
+        <div class="form-group"><input class="form-control" type="text" name="password" placeholder="Password"></div>
+        <button class="btn btn-light" type="submit" id="butonas" style="width:100%;height:100%;margin-bottom:10px;background-color:rgb(106,176,209);">Button</button>
+        <a
+            href="#" id="linkas" style="font-size:12px;margin:auto;margin-left:0;margin-right:0;margin-bottom:0;margin-top:0;padding-left:0;padding-right:0;color:rgb(177,151,70);">Forgot your e mail or password?</a>
+    </form>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

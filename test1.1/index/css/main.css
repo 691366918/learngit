@@ -1,0 +1,139 @@
+/* #user_images{
+    width: 50px;
+    height: 50px;
+} */
+
+/* html { overflow-x: scroll; } */
+
+
+
+.navbar-nav{
+    width: 80%;
+}
+
+.navbar-nav a{
+    font-size: 1.5em;
+}
+.navbar-nav a:hover{
+    color: rgb(128, 122, 141)!important;
+}
+
+
+.dropdown-menu1{
+   position: absolute;
+    left: -180px;
+    top:70px;
+    margin: 0 10px;
+    padding: 20px;
+    width: 300px;
+    height: 250px;
+    border: 1px solid #fff;
+    background: #fff;
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0 0px 0px 2px rgb(221, 220, 220);
+}
+.dropdown-menu1 a span{
+    position: relative;
+    text-align: center;
+    margin-top: 150px;
+    top: 30px;
+    color: black;
+}
+
+.dropdown-menu1 a img{
+    width: 20px;
+    height: 20px;
+    margin-right:10px; 
+}
+#my_news:hover .dropdown-menu1{
+    display: block;
+}
+.dropdown-item1{
+    width: 50%;
+    height: 20px;
+    margin: 10px auto;
+    padding: 0px;
+    float: left;
+    /* font-size: 0.5px!important; */
+ 
+}
+.dropdown-item1 {
+    font-size: 1em!important;
+    color: rgb(128, 122, 141);
+}
+.dropdown-menu1 div a img{
+    margin: 0px 30px 20px 0px;
+    width: 70px;
+    height: 70px;
+    border-radius: 60px;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+#team{
+    background: rgb(75, 73, 73);
+}
+.cont{
+   height: 500px;
+}
+.cont .row{
+    height: 500px;
+}
+
+.cbp-caption-hover-gradient,.cbp-caption{
+    width: 316px;
+    height: 316px;
+}
+.cbp-caption img{
+    width: 316px;
+    height: 316px;
+  
+}
+
+
+ @media(min-width:1200px){
+   
+    #logo{
+        height: 80px;
+        background: rgb(156, 153, 153)
+    }
+     .right1{
+        right: 110px;
+        position: absolute!important;
+       
+      
+    
+    }
+    .right2{
+        right: 50px;
+        position: absolute!important;
+     
+    
+    }
+    .navbar-brand img{
+        position: absolute;
+        left: 150px!important;
+    }
+} 
+#user_show{
+    position: relative;
+    top: -15px;
+}
+#user_show img{
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+}
+.heading-light h2 a{
+color: rgb(32, 32, 32);
+}

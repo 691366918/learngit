@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
+</head>
+
+<body>
+    <div id="logo">
+
+        <img id="logo_1" src="./images/logo_scroll.png" alt="">
+
+        <div>
+            <ul class="logo-item">
+                <li class="mainlevel">
+                    <a href="../index/index.html">首页</a>
+                </li>
+                <li class="mainlevel">
+                    <a href="../pack/new/login.html">论坛</a>
+                </li>
+                <li class="mainlevel">
+                    <input type="text" id="search_content" class="search_left"placeholder="I am looking for...">
+                   
+                    <!-- <a href="./search.php" id="search"></a> -->
+                </li>
+                <img src="./images/i/搜索.png" alt=""class="search_left" id="search_img">
+                <li class="page-scroll right1 " id="login_big">
+                    <a href="../../../test1.1/index/login.html">登录</a>
+                </li>
+                <li class="page-scroll right2" id="zhuce_big">
+                    <a href="../../../test1.1/index/login.html">注册</a>
+
+                </li>
+
+                <li class="page-scroll  right3" id="my_news">
+                    <a href="#" id="user_show">
+                        <img src="" alt="" id="user_images">
+                    </a>
+                    <div class="dropdown-menu1">
+                        <div>
+                            <a href="../../resource/images/user/8.html"> <img class="dropdown-user" src="" alt="" id="user_images2"><span
+                                    id="user_name"></span></a>
+                        </div>
+                        <a class="dropdown-item1" href="../my/my.html"><img src="./images/i/课程.png">我的课程</a>
+                        <a class="dropdown-item1" href="#"><img src="./images/i/设置.png">个人设置</a>
+                        <a class="dropdown-item1" href="./login.html"><img src="./images/i/切换.png">切换账号</a>
+                        <a class="dropdown-item1" href="./login.html"><img src="./images/i/退出.png">安全退出</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div id="nav">
+
+        <div id="header">
+            <img src="./images/11.jpg" alt="">
+        </div>
+        <hr>
+        <div id="menu">
+            <span id="nd">难度：</span>
+            <button id="btn-all" class="btn1 red_color">全部</button>
+            <button id="btn-easy" class="btn1">初级</button>
+            <button id="btn-medium" class="btn1">中级</button>
+            <button id="btn-difficult" class="btn1">高级</button>
+
+
+        </div>
+        <div id="a1" class="row_all row ">
+
+
+        </div>
+
+        <div id="a2" class="row_easy row no">
+
+
+        </div>
+
+        <div id="a3" class="row_medium row no">
+
+
+        </div>
+
+        <div id="a4" class="row_difficult row no">
+
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        //     $(document).ready(function () {
+
+        //         $("#btn").click(function () {
+        //             $("#container").css("display", "flex");
+        //             $("#more").css("display", "none");
+        //         })
+
+        //     });
+        //
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function (e) {
+
+
+            var locurl = window.location.href; //获得页面的URL
+            var startplace = locurl.indexOf("?"); //得到网址与参数分隔符的位置，一般都用“？”分隔
+            if (startplace != -1) { //判断网址中有没有参数
+                var params = locurl.substr(startplace + 1); //获得参数字符串，从分隔符位置+1处开始获取   结果为id=1;
+                var id = params.substr(3); //作用是只拿到1，从第三个位置开始截取
+                // alert(id);
+                $.cookie("class", id, {
+                    path: '/'
+                });
+
+
+            }
+
+
+            $.ajax({
+
+                url: "chuli.php",
+                data: {
+                    daihao: id
+                }, //前面命名，后面是值
+                type: "POST",
+                dataType: "JSON",
+                success: function (s) {
+
+
+                    var j = 0;
+                    var root_all = $('.row_all');
+                    var root_easy = $('.row_easy');
+                    var root_medium = $('.row_medium');
+                    var root_difficult = $('.row_difficult');
+
+                    while (s[j].number) {
+
+
+                        var str1 =
+                            "<div class='col-xs-12 col-sm-6 col-md-6 col-lg-3 course'><a href='./menu.html?number=";
+                        var str2 = s[j].number;
+
+                        var str3 = "   '> <img src='";
+                        var str4 = "" + s[j].images;
+
+                        var str5 = "'></a><h6>";
+                        var str6 = "" + s[j].coursename;
+                        var str7 =
+                            "</h6><div class='bottom'><span class='course-logo'>LeRobot</span><span class='course-right'>人参加</span><span class='person-count'>"
+                        var str8 = "" + s[j].person_count;
+                        var str9 = "</span></div>  </div>";
+                        var aaa = str1 + str2 + str3 + str4 + str5 + str6 + str7 + str8 + str9;
+
+                        var t = $(aaa);
+
+                        $(root_all).append(t);
+                        // $.cookie('' + j + 'images', s[j].images);
+                        t = $(aaa);
+                        if (s[j].nd == 1) {
+
+                            $(root_easy).append(t);
+
+                        } else if (s[j].nd == 2) {
+
+                            $(root_medium).append(t);
+
+                        }
+
+                        j++;
+                    }
+
+                }
+
+            });
+
+            $("#btn-all").click(function () {
+
+                $(".btn1").removeClass("red_color");
+                $(this).addClass("red_color");
+
+
+                $(".row").addClass("no");
+                $("#a1").removeClass("no");
+            })
+
+            $("#btn-easy").click(function () {
+
+
+
+                $(".btn1").removeClass("red_color");
+                $(this).addClass("red_color");
+
+                $(".row").addClass("no");
+                $("#a2").removeClass("no");
+
+
+            })
+
+            $("#btn-medium").click(function () {
+
+
+
+
+                $(".btn1").removeClass("red_color");
+                $(this).addClass("red_color");
+
+                $(".row").addClass("no");
+                $("#a3").removeClass("no");
+
+            })
+
+            $("#btn-difficult").click(function () {
+
+
+
+
+                $(".btn1").removeClass("red_color");
+                $(this).addClass("red_color");
+
+
+                $(".row").addClass("no");
+                $("#a4").removeClass("no");
+            })
+
+
+
+            //  $("h6:empty").parent().hide();
+        })
+    </script>
+
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // <!--给按钮加一个点击事件-->
+
+            // $.cookie("login_value",0,{'path':'/'});
+            var login_yes = $.cookie("login_value");
+            var user_show = $.cookie("user");
+            var user_name = $.cookie("name");
+            var user_images = $.cookie("user_images");
+            //   alert(user_images);
+            if (login_yes == 1) {
+
+                $("#login_big").css("display", "none");
+                $("#zhuce_big").css("display", "none");
+                $("#user_show").css("display", "block");
+                $("#user_images").attr("src", user_images);
+                $("#user_images2").attr("src", user_images);
+                $("#user_name").text(user_name);
+            } else {
+                $("#user_show").css("display", "none");
+            }
+
+
+
+
+
+
+        });
+    </script>
+<script>
+
+$("#search_img").click(function(){
+
+ var  search_input=$("#search_content").val();
+
+
+
+
+$.cookie("search_input",search_input);
+
+
+window.location.href = "./search.php";
+
+
+
+})
+
+</script>
+
+
+
+
+</body>
+
+</html>
